@@ -212,7 +212,9 @@ export default class ImageView extends Component<PropsType, StateType> {
     }
 
     componentWillUnmount() {
-        Dimensions.removeEventListener('change', this.onChangeDimension);
+        if(Dimensions.removeEventListener) {  
+            Dimensions.removeEventListener('change', this.onChangeDimension);
+        }
 
         if (this.glideAlwaysTimer) {
             clearTimeout(this.glideAlwaysTimer);
